@@ -1,0 +1,212 @@
+1. Download Ganache
+2. Clone Dapp University's template from https://github.com/dappuniversity/starter_kit.git
+3. Then sudo npm install -g truffle@^5.1.14
+4. Then install indenticon: npm install --save identicon.js@^2.3.3
+5. Once completed, make a deploy_contracts.js file in migrations directory having the same content with the name changed as of EthSwap
+6. Then make a EthSwap contract in src/contracts/ and just for testing write something and also change the package.json name and description of your choice
+7. Run the command - truffle migrate, to migrate the contracts to blockchain (make sure ganache is already running)
+Will show something like this,
+Compiling your contracts...
+===========================
+> Compiling ./src/contracts/EthSwap.sol
+> Compiling ./src/contracts/Migrations.sol
+> Artifacts written to /home/sriraj/Desktop/Programming Environment/Blockchain/eth_swap/src/abis
+> Compiled successfully using:
+   - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
+
+
+
+Starting migrations...
+======================
+> Network name:    'development'
+> Network id:      5777
+> Block gas limit: 0x6691b7
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0xc6c5e8ca35c61ff57efab29daa85b44afcc797576f34c659a58ddb5abc0d7ffc
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x224F703e2B71696eeDF35D69856270cB8fa92874
+   > block number:        1
+   > block timestamp:     1616595576
+   > account:             0x414cE1239AAcbe9e7C834332c7884615b2b0174b
+   > balance:             99.99549526
+   > gas used:            225237
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00450474 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00450474 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'EthSwap'
+   -------------------
+   > transaction hash:    0x171ad5c3fd2ee428536d2079b46b576ac89e0b7aaf1bd35ba8ee9e1b487dbb1e
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x0EB4E65C81937193a0301Ce0a7d18F085393e6c6
+   > block number:        3
+   > block timestamp:     1616595577
+   > account:             0x414cE1239AAcbe9e7C834332c7884615b2b0174b
+   > balance:             99.99139954
+   > gas used:            162423
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00324846 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00324846 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.0077532 ETH
+
+8. To open truffle console, type truffle console and it will start a development like console
+9. First, we will catch the contract using
+    contract = await EthSwap.deployed()
+which will give undefined as output then again write contract and hit enter to get the deployed contract
+10. To get the contract address, type contract.address
+11. To get name of the contract,
+    name = await contract.name()
+will give output as undefined so again type the variable nme and hit enter to get the name
+12. To exit the truffle console, type .exit
+13. Create a Token.sol and redeploy all the files of migrations folder as contracts are immutable,
+    truffle migrate --reset
+Result is given below:
+Compiling your contracts...
+===========================
+> Compiling ./src/contracts/Token.sol
+> Artifacts written to /home/sriraj/Desktop/Programming Environment/Blockchain/eth_swap/src/abis
+> Compiled successfully using:
+   - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
+
+
+
+Starting migrations...
+======================
+> Network name:    'development'
+> Network id:      5777
+> Block gas limit: 0x6691b7
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0x050daf5b9574de3d7780743a2b1c3e170c3c984f49f8ad18bff0a59400c25e6c
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xcCe73De81844f4aec8C90700FBb7350b3421726e
+   > block number:        5
+   > block timestamp:     1616599553
+   > account:             0x414cE1239AAcbe9e7C834332c7884615b2b0174b
+   > balance:             99.98634754
+   > gas used:            225237
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00450474 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00450474 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Replacing 'EthSwap'
+   -------------------
+   > transaction hash:    0xd041befafd666a20f7a6aebebb811a3db3e0d56141991a62797a666bd314f782
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x0b3599375DA8e013d8BE1A115CF916faDbDCD51b
+   > block number:        7
+   > block timestamp:     1616599553
+   > account:             0x414cE1239AAcbe9e7C834332c7884615b2b0174b
+   > balance:             99.98225182
+   > gas used:            162423
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00324846 ETH
+
+
+   Deploying 'Token'
+   -----------------
+   > transaction hash:    0x6ad1e2aa5deb94676bd2dbad7cb388020b203f2ed7649348c62ce7b2d5d526aa
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x60DE077D5f6d0c9Ce9979cF91cfeb02e7d2A1831
+   > block number:        8
+   > block timestamp:     1616599554
+   > account:             0x414cE1239AAcbe9e7C834332c7884615b2b0174b
+   > balance:             99.9673839
+   > gas used:            743396
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01486792 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.01811638 ETH
+
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.02262112 ETH
+
+14. Again go to truffle console and initialize the Token
+    token = await Token.deployed()
+type token to get full information
+15. To get balance of a specific address,
+    balance = await token.balanceOf()
+    balance.toString() --> to convert to string
+16. Then put all token to EthSwap
+17. Now before writing EthSwap contract, it is important to make a test file for testing the EthSwap contract as in production level the contract is immutable
+18. mkdir test and touch test/EthSwap.test.js
+19. To test the test file
+    truffle test --> to automate the testing of contracts
+20. To only check for syntax error in contracts, run truffle compile
+21. Connect metamask to chrome browser by downloading the chorme extension and running it by adding a custom RPC of Ganachewith chain ID - 1337 (default)
+22. To connect web3 with metamask, use this code
+window.addEventListener('load', async () => {
+    // Modern dapp browsers...
+    if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        // try {
+            // Request account access if needed
+            await window.ethereum.enable();
+            // Acccounts now exposed
+            // web3.eth.sendTransaction({/* ... */});
+        // } catch (error) {
+        //     // User denied account access...
+        // }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+        window.web3 = new Web3(window.web3.currentProvider);
+        // Acccounts always exposed
+        // web3.eth.sendTransaction({/* ... */});
+    }
+    // Non-dapp browsers...
+    else {
+        window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+});
